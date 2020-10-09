@@ -63,7 +63,7 @@ else
   ADM=$SERVER_ADMIN
 fi
 
-$YEA=$(date +%Y)
+YEA=$(date +%Y)
 
 # 4. ---------------- MAKE A COPY OF THE HTTPD CONF TEMPLATE ----------------- #
 
@@ -104,7 +104,7 @@ else
   touch "$PWD/private/log/error.log"
 fi
 
-# ---------------------- 6. UPDATE LICENSE AND README ------------------------ #
+# ---------------- 6. UPDATE LICENSE, README AND SITE INDEX ------------------ #
 
 sed -i '' "s/apxs2-vhost/$PKG/" README.md
 
@@ -114,17 +114,25 @@ sed -i '' "s/APXS2/$ORG/" LICENSE
 
 sed -i '' "s/2020/$YEA/" LICENSE
 
+sed -i '' "s/Example/$PKG/" public/index.php
+
+sed -i '' "s/An example index file/$DSC/" public/index.php
+
+sed -i '' "s/2020/$YEA/" public/index.php
+
+sed -i '' "s/APXS2/$ORG/" public/index.php
+
 # ------ 7. INCLUDE THE NEW HTTPD.CONF FILE IN THE MAIN HTTPD.CONF FILE ------ #
 
 LCF=$(apachectl -t -D DUMP_INCLUDES | grep '*' | cut -d" " -f4)
 
-printf "\nInclude $PWD/private/etc/httpd.conf\n"
+printf "\nInclude $PWD/private/etc/httpd.conf\n" >> $LCF
 
 # Check the syntax
 
 RES=$(apachectl configtest)
 
-if [ $RES = "Syntax OK" ]; then
+if [ "$RES" = "Syntax OK" ]; then
   echo "Setup Complete"
 else
   echo $RES

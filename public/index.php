@@ -2,6 +2,7 @@
 
 $packageName = "Example";
 $packageDescription = "An example index file";
+$packageCopyright = "&copy; 2020 APXS2 | All Rights Reserved."
 
 ?>
 
@@ -10,10 +11,11 @@ $packageDescription = "An example index file";
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php $packageName ?></title>
+  <title><?php echo $packageName ?></title>
 </head>
-<body>
-  <h1><?php $packageName ?></h1>
-  <p><?php $packageDescription ?></p>
+<body style="text-align:center;font-family:Arial,Helvetica,sans-serif">
+  <h1><?php echo $packageName ?></h1>
+  <p><?php echo $packageDescription ?></p>
+  <small><?php echo $packageCopyright ?></p>
 </body>
 </html>
