@@ -134,6 +134,7 @@ RES=$(apachectl configtest)
 
 if [ "$RES" = "Syntax OK" ]; then
   echo "Setup Complete"
+  open http://$SRV
 else
   echo $RES
 fi
