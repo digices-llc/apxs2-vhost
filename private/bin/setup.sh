@@ -20,7 +20,7 @@ PKG=${PWD##*/}
 
 CNF="$PWD/private/etc/setup.cnf"
 
-COMPANY_NAME=$(awk '/^COMPANY_NAME/ {print $3; exit}' "$CNF")
+COMPANY_NAME=$(awk '/^COMPANY_NAME/ {$1=$2=""; print $0}' "$CNF" | awk '{$1=$1};1')
 PACKAGE_NAME=$(awk '/^PACKAGE_NAME/ {print $3; exit}' "$CNF")
 PACKAGE_DESC=$(awk '/^PACKAGE_DESC/ {$1=$2=""; print $0}' "$CNF" | awk '{$1=$1};1')
 SERVER_NAME=$(awk '/^SERVER_NAME/ {print $3; exit}' "$CNF")
