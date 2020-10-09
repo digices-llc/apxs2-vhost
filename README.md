@@ -1,2 +1,3 @@
-# apxs2-vhost
-Apache HTTPD Server VHost
+# apxs2-vhost #
+
+Apache HTTPD Server VirtualHost Template
